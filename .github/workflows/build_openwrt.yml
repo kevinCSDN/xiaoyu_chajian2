@@ -65,8 +65,12 @@ jobs:
 
     - name: cache
       if: github.event.inputs.cache == 'true' && github.event.inputs.cache != 'false'
-      uses: klever1988/cachewrtbuild@main
-      with: { ccache: 'true', prefix: ${{ github.workspace }}/openwrt }
+      uses: klever1988/cachewrtbuild@v1.5  # 修改1：指定稳定版本号
+      with:  # 修改2：确保 with 块正确缩进
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
+        # 修改3：新增必要参数（根据该 action 的文档要求）
+        key: ${{ github.workflow }}-${{ github.ref }}
         
     - name: Load custom feeds
       run: |  # 保持feeds配置
