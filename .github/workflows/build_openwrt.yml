@@ -96,11 +96,11 @@ jobs:
 
     - name: cache
       if: github.event.inputs.cache == 'true' && github.event.inputs.cache != 'false'
-      uses: klever1988/cachewrtbuild@v1.5  # 使用稳定版本
+      uses: klever1988/cachewrtbuild@main
       with:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
-        key: cache-${{ hashFiles('**/feeds.conf.default') }}
+        
         
     - name: Load custom feeds
       run: |
